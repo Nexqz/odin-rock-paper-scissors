@@ -15,7 +15,30 @@ function getComputerChoice() {
       break;
   }
 
+  console.log(computerChoice);
   return computerChoice;
 }
 
 getComputerChoice();
+
+function getHumanChoice() {
+  let choice = prompt("Rock, Paper, or Scissors?").toLowerCase();
+  let humanChoice = "";
+
+  switch (choice) {
+    case "rock":
+      humanChoice = "rock";
+      break;
+    case "paper":
+      humanChoice = "paper";
+      break;
+    case "scissors":
+      humanChoice = "scissors";
+      break;
+  }
+
+  console.log(humanChoice);
+  return humanChoice;
+}
+
+getHumanChoice();
