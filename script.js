@@ -1,5 +1,35 @@
 let humanScore = 0;
 let computerScore = 0;
+let roundCounter = 0;
+let maxRound = 5;
+
+function getHumanChoice() {
+  const btnContainer = document.querySelector("#btn-container");
+  let humanChoice = "";
+
+  btnContainer.addEventListener("click", (event) => {
+    let choice = event.target;
+
+    switch (choice.id) {
+      case "btn-rock":
+        humanChoice = "rock";
+        break;
+      case "btn-paper":
+        humanChoice = "paper";
+        break;
+      case "btn-scissors":
+        humanChoice = "scissors";
+        break;
+    }
+
+    if (humanChoice) {
+      console.log(`Human: ${humanChoice}`);
+      handleRound(humanChoice);
+    }
+  });
+}
+
+getHumanChoice();
 
 function getComputerChoice() {
   let computerChoice = "";
@@ -22,24 +52,13 @@ function getComputerChoice() {
   return computerChoice;
 }
 
-function getHumanChoice() {
-  let humanChoice = "";
-  while (
-    humanChoice !== "rock" &&
-    humanChoice !== "paper" &&
-    humanChoice !== "scissors"
-  ) {
-    let choice = prompt("Rock, Paper, or Scissors?").toLowerCase();
-    if (choice === "rock" || choice === "paper" || choice === "scissors") {
-      humanChoice = choice;
-      console.log(`Human: ${choice}`);
-      return humanChoice;
-    } else {
-      alert("Invalid input. Please choose Rock, Paper, or Scissors.");
-    }
+function handleRound(humanChoice) {
+  const computerChoice = getComputerChoice();
+  playRound(humanChoice, computerChoice);
+  roundCounter++;
+  if (roundCounter >= maxRound) {
+    console.log(`Human Score: ${humanScore}\nComputer Score: ${computerScore}`);
   }
-
-  return humanChoice;
 }
 
 function playRound(humanChoice, computerChoice) {
@@ -75,22 +94,3 @@ function playRound(humanChoice, computerChoice) {
     }
   }
 }
-
-function playGame(round) {
-  for (let i = 0; i < round; i++) {
-    playRound(getHumanChoice(), getComputerChoice());
-  }
-
-  console.log(`Human Score: ${humanScore}`);
-  console.log(`Computer Score: ${computerScore}`);
-
-  if (humanScore < computerScore) {
-    console.log("Computer Win");
-  } else if (humanScore > computerScore) {
-    console.log("Human Win");
-  } else {
-    console.log("Its a tie");
-  }
-}
-
-playGame(2);
