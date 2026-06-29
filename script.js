@@ -56,4 +56,10 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-console.log(playRound(getHumanChoice(), getComputerChoice()));
+function playGame(rounds) {
+  for (let i = 0; i < rounds; i++) {
+    console.log(playRound(getHumanChoice(), getComputerChoice()));
+  }
+}
+
+playGame(2);
