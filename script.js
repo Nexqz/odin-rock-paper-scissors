@@ -17,13 +17,22 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-  let value = prompt("Choose Rock, Paper, or Scissors");
-  return value.toLowerCase();
+  let choice = "";
+
+  while (choice !== "rock" && choice !== "paper" && choice !== "scissors") {
+    choice = prompt("Choose rock, paper, or scissors");
+    if (choice === null) {
+      console.log("Game cancelled");
+      return null;
+    }
+    choice = choice.toLowerCase();
+  }
+  return choice;
 }
 
 function playRound(humanChoice, computerChoice) {
   console.log(
-    `Human Choice: ${humanChoice}, Computer Choice: ${computerChoice}`,
+    `Human Choice: ${humanChoice}\nComputer Choice: ${computerChoice}`,
   );
   if (humanChoice === "rock") {
     if (computerChoice === "scissors") {
@@ -62,4 +71,4 @@ function playGame(rounds) {
   }
 }
 
-playGame(2);
+playGame(1);
